@@ -7,9 +7,25 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<Employee> employees = Data.GetEmployees();
-        List<Department> departments = Data.GetDepartments();
-        
+        List<Employee> employeesList = Data.GetEmployees();
+        List<Department> departmentsList = Data.GetDepartments();
+
+        var results = employeesList.Join(departmentsList, e => e.DepartmentId, d => d.Id, (emp, dept) => new
+        {
+            Id = emp.Id,
+            FirstName = emp.FirstName,
+            LastName = emp.LastName,
+            AnnualSalary = emp.AnnualSalary,
+            DepartmentId = emp.DepartmentId,
+            DepartmentName = dept.LongName,
+        });
+
+        foreach (var result in results)
+        {
+            Console.WriteLine($"Id: {result.Id}, FirstName: {result.FirstName}, LastName: {result.LastName}, AnnualSalary: {result.AnnualSalary}, DepartmentId: {result.DepartmentId}, DepartmentName: {result.DepartmentName}");
+        }
+        Console.ReadLine();
+
     }
 }
 
@@ -53,7 +69,7 @@ public static class Data
             LastName = "Jameson",
             AnnualSalary = 80000.1m,
             IsManager = true,
-            DepartmentId = 2
+            DepartmentId = 3
         };
         employees.Add(employee);
         employee = new Employee
@@ -73,7 +89,7 @@ public static class Data
             LastName = "Stevens",
             AnnualSalary = 30000.2m,
             IsManager = false,
-            DepartmentId = 2
+            DepartmentId = 3
         };
         employees.Add(employee);
 
