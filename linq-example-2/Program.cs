@@ -1,10 +1,15 @@
-﻿namespace linq_example_2;
+﻿using System;
+using System.Collections.Generic;
+
+namespace linq_example_2;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        List<Employee> employees = Data.GetEmployees();
+        List<Department> departments = Data.GetDepartments();
+        
     }
 }
 
