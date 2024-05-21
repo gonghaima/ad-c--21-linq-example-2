@@ -18,7 +18,7 @@ class Program
             AnnualSalary = emp.AnnualSalary,
             DepartmentId = emp.DepartmentId,
             DepartmentName = dept.LongName,
-        });
+        }).OrderBy(o => o.DepartmentId).ThenBy(o => o.AnnualSalary);
 
         foreach (var result in results)
         {
