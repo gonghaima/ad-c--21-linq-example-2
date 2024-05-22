@@ -10,15 +10,29 @@ class Program
         List<Employee> employeesList = Data.GetEmployees();
         List<Department> departmentsList = Data.GetDepartments();
 
-        var results = employeesList.Join(departmentsList, e => e.DepartmentId, d => d.Id, (emp, dept) => new
-        {
-            Id = emp.Id,
-            FirstName = emp.FirstName,
-            LastName = emp.LastName,
-            AnnualSalary = emp.AnnualSalary,
-            DepartmentId = emp.DepartmentId,
-            DepartmentName = dept.LongName,
-        }).OrderBy(o => o.DepartmentId).ThenBy(o => o.AnnualSalary);
+        // method syntax
+        // var results = employeesList.Join(departmentsList, e => e.DepartmentId, d => d.Id, (emp, dept) => new
+        // {
+        //     Id = emp.Id,
+        //     FirstName = emp.FirstName,
+        //     LastName = emp.LastName,
+        //     AnnualSalary = emp.AnnualSalary,
+        //     DepartmentId = emp.DepartmentId,
+        //     DepartmentName = dept.LongName,
+        // }).OrderBy(o => o.DepartmentId).ThenBy(o => o.AnnualSalary);
+
+        var results = from e in employeesList
+                     join d in departmentsList on e.DepartmentId equals d.Id
+                     orderby e.DepartmentId, e.AnnualSalary
+                     select new
+                     {
+                         Id = e.Id,
+                         FirstName = e.FirstName,
+                         LastName = e.LastName,
+                         AnnualSalary = e.AnnualSalary,
+                         DepartmentId = e.DepartmentId,
+                         DepartmentName = d.LongName
+                     };
 
         foreach (var result in results)
         {
