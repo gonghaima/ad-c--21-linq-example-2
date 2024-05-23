@@ -21,22 +21,34 @@ class Program
         //     DepartmentName = dept.LongName,
         // }).OrderBy(o => o.DepartmentId).ThenBy(o => o.AnnualSalary);
 
-        var results = from e in employeesList
-                     join d in departmentsList on e.DepartmentId equals d.Id
-                     orderby e.DepartmentId, e.AnnualSalary
-                     select new
-                     {
-                         Id = e.Id,
-                         FirstName = e.FirstName,
-                         LastName = e.LastName,
-                         AnnualSalary = e.AnnualSalary,
-                         DepartmentId = e.DepartmentId,
-                         DepartmentName = d.LongName
-                     };
+        // query syntax
+        // var results = from e in employeesList
+        //              join d in departmentsList on e.DepartmentId equals d.Id
+        //              orderby e.DepartmentId, e.AnnualSalary
+        //              select new
+        //              {
+        //                  Id = e.Id,
+        //                  FirstName = e.FirstName,
+        //                  LastName = e.LastName,
+        //                  AnnualSalary = e.AnnualSalary,
+        //                  DepartmentId = e.DepartmentId,
+        //                  DepartmentName = d.LongName
+        //              };
 
-        foreach (var result in results)
+        // foreach (var result in results)
+        // {
+        //     Console.WriteLine($"Id: {result.Id}, FirstName: {result.FirstName}, LastName: {result.LastName}, AnnualSalary: {result.AnnualSalary}, DepartmentId: {result.DepartmentId}, DepartmentName: {result.DepartmentName}");
+        // }
+        var groupResults = from e in employeesList
+                           orderby e.DepartmentId descending
+                           group e by e.DepartmentId;
+        foreach (var empGroup in groupResults)
         {
-            Console.WriteLine($"Id: {result.Id}, FirstName: {result.FirstName}, LastName: {result.LastName}, AnnualSalary: {result.AnnualSalary}, DepartmentId: {result.DepartmentId}, DepartmentName: {result.DepartmentName}");
+            Console.WriteLine($"DepartmentId: {empGroup.Key}");
+            foreach (var employee in empGroup)
+            {
+                Console.WriteLine($"Id: {employee.Id}, FirstName: {employee.FirstName}, LastName: {employee.LastName}, AnnualSalary: {employee.AnnualSalary}, DepartmentId: {employee.DepartmentId}");
+            }
         }
         Console.ReadLine();
 
