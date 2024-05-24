@@ -54,15 +54,34 @@ class Program
         // }
 
         // ToLookup Operator - immidiate execution
-        var groupResults = employeesList.OrderBy(o=>o.DepartmentId).ToLookup(e=>e.DepartmentId);
-        foreach (var empGroup in groupResults)
-        {
-            Console.WriteLine($"DepartmentId: {empGroup.Key}");
-            foreach (var employee in empGroup)
-            {
-                Console.WriteLine($"Id: {employee.Id}, FirstName: {employee.FirstName}, LastName: {employee.LastName}, AnnualSalary: {employee.AnnualSalary}, DepartmentId: {employee.DepartmentId}");
-            }
+        // var groupResults = employeesList.OrderBy(o=>o.DepartmentId).ToLookup(e=>e.DepartmentId);
+        // foreach (var empGroup in groupResults)
+        // {
+        //     Console.WriteLine($"DepartmentId: {empGroup.Key}");
+        //     foreach (var employee in empGroup)
+        //     {
+        //         Console.WriteLine($"Id: {employee.Id}, FirstName: {employee.FirstName}, LastName: {employee.LastName}, AnnualSalary: {employee.AnnualSalary}, DepartmentId: {employee.DepartmentId}");
+        //     }
+        // }
+
+        // All, Any, Contains Quantifier Operators
+        // All and Any Operators
+        var annualSalaryCompare = 20000;
+        bool isTrueAll = employeesList.All(e => e.AnnualSalary > annualSalaryCompare);
+
+        if(isTrueAll){
+            Console.WriteLine($"All employees have annual salary greater than {annualSalaryCompare}");
+        }else{
+            Console.WriteLine($"Not all employees have annual salary are above {annualSalaryCompare}");
         }
+
+        bool isTrueAny = employeesList.Any(e => e.AnnualSalary > annualSalaryCompare);
+        if(isTrueAny){
+            Console.WriteLine($"At least one employee has annual salary greater than {annualSalaryCompare}");
+        }else{           
+            Console.WriteLine($"No employee has annual salary greater than {annualSalaryCompare}");
+        };
+        
         Console.ReadLine();
 
     }
