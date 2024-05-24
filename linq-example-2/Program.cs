@@ -40,7 +40,7 @@ class Program
         //     Console.WriteLine($"Id: {result.Id}, FirstName: {result.FirstName}, LastName: {result.LastName}, AnnualSalary: {result.AnnualSalary}, DepartmentId: {result.DepartmentId}, DepartmentName: {result.DepartmentName}");
         // }
 
-        // group by operations
+        // group by operations - deferred execution
         // var groupResults = from e in employeesList
         //                    orderby e.DepartmentId descending
         //                    group e by e.DepartmentId;
@@ -53,7 +53,7 @@ class Program
         //     }
         // }
 
-        // ToLookup Operator
+        // ToLookup Operator - immidiate execution
         var groupResults = employeesList.OrderBy(o=>o.DepartmentId).ToLookup(e=>e.DepartmentId);
         foreach (var empGroup in groupResults)
         {
