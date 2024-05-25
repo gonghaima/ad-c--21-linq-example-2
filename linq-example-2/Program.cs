@@ -66,25 +66,84 @@ class Program
 
         // All, Any, Contains Quantifier Operators
         // All and Any Operators
-        var annualSalaryCompare = 20000;
-        bool isTrueAll = employeesList.All(e => e.AnnualSalary > annualSalaryCompare);
+        // var annualSalaryCompare = 20000;
+        // bool isTrueAll = employeesList.All(e => e.AnnualSalary > annualSalaryCompare);
 
-        if(isTrueAll){
-            Console.WriteLine($"All employees have annual salary greater than {annualSalaryCompare}");
-        }else{
-            Console.WriteLine($"Not all employees have annual salary are above {annualSalaryCompare}");
-        }
+        // if(isTrueAll){
+        //     Console.WriteLine($"All employees have annual salary greater than {annualSalaryCompare}");
+        // }else{
+        //     Console.WriteLine($"Not all employees have annual salary are above {annualSalaryCompare}");
+        // }
 
-        bool isTrueAny = employeesList.Any(e => e.AnnualSalary > annualSalaryCompare);
-        if(isTrueAny){
-            Console.WriteLine($"At least one employee has annual salary greater than {annualSalaryCompare}");
-        }else{           
-            Console.WriteLine($"No employee has annual salary greater than {annualSalaryCompare}");
+        // bool isTrueAny = employeesList.Any(e => e.AnnualSalary > annualSalaryCompare);
+        // if(isTrueAny){
+        //     Console.WriteLine($"At least one employee has annual salary greater than {annualSalaryCompare}");
+        // }else{           
+        //     Console.WriteLine($"No employee has annual salary greater than {annualSalaryCompare}");
+        // };
+
+
+        // Contains Operator
+        var searchEmployee = new Employee
+        {
+            Id = 3,
+            FirstName = "Douglas",
+            LastName = "Roberts",
+            AnnualSalary = 40000.2m,
+            IsManager = false,
+            DepartmentId = 1
         };
+        bool containsEmployee = employeesList.Contains(searchEmployee);
+
+
+        EmployeeR searchEmployeeR = new EmployeeR
+        {
+            Id = 3,
+            FirstName = "Douglas",
+            LastName = "Roberts",
+            AnnualSalary = 40000.2m,
+            IsManager = false,
+            DepartmentId = 1
+        };
+
+        EmployeeR searchEmployeeR1 = new EmployeeR
+        {
+            Id = 3,
+            FirstName = "Douglas",
+            LastName = "Roberts",
+            AnnualSalary = 40000.2m,
+            IsManager = false,
+            DepartmentId = 1
+        };
+
+        List<EmployeeR> employeesListR = new List<EmployeeR>();
+        employeesListR.Add(searchEmployeeR);
+        bool containsEmployeeR = employeesListR.Contains(searchEmployeeR1);
+
         
+
+
+
+        // if (containsEmployee)
+        if (containsEmployeeR)
+
+            Console.WriteLine($"Employee found in the list");
+        else
+            Console.WriteLine($"Employee not found in the list");
+
         Console.ReadLine();
 
     }
+}
+
+public record EmployeeR
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public decimal AnnualSalary { get; set; }
+    public bool IsManager { get; set; }
+    public int DepartmentId { get; set; }
 }
 
 public class Employee
@@ -137,7 +196,7 @@ public static class Data
             LastName = "Roberts",
             AnnualSalary = 40000.2m,
             IsManager = false,
-            DepartmentId = 2
+            DepartmentId = 1
         };
         employees.Add(employee);
         employee = new Employee
