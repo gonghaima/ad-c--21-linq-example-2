@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace linq_example_2;
 
@@ -93,46 +94,61 @@ class Program
             IsManager = false,
             DepartmentId = 1
         };
-        bool containsEmployee = employeesList.Contains(searchEmployee);
+        bool containsEmployee = employeesList.Contains(searchEmployee, new EmployeeComparer());
 
 
-        EmployeeR searchEmployeeR = new EmployeeR
-        {
-            Id = 3,
-            FirstName = "Douglas",
-            LastName = "Roberts",
-            AnnualSalary = 40000.2m,
-            IsManager = false,
-            DepartmentId = 1
-        };
+        // Using Record Type
+        // EmployeeR searchEmployeeR = new EmployeeR
+        // {
+        //     Id = 3,
+        //     FirstName = "Douglas",
+        //     LastName = "Roberts",
+        //     AnnualSalary = 40000.2m,
+        //     IsManager = false,
+        //     DepartmentId = 1
+        // };
 
-        EmployeeR searchEmployeeR1 = new EmployeeR
-        {
-            Id = 3,
-            FirstName = "Douglas",
-            LastName = "Roberts",
-            AnnualSalary = 40000.2m,
-            IsManager = false,
-            DepartmentId = 1
-        };
+        // EmployeeR searchEmployeeR1 = new EmployeeR
+        // {
+        //     Id = 3,
+        //     FirstName = "Douglas",
+        //     LastName = "Roberts",
+        //     AnnualSalary = 40000.2m,
+        //     IsManager = false,
+        //     DepartmentId = 1
+        // };
 
-        List<EmployeeR> employeesListR = new List<EmployeeR>();
-        employeesListR.Add(searchEmployeeR);
-        bool containsEmployeeR = employeesListR.Contains(searchEmployeeR1);
-
-        
-
+        // List<EmployeeR> employeesListR = new List<EmployeeR>();
+        // employeesListR.Add(searchEmployeeR);
+        // bool containsEmployeeR = employeesListR.Contains(searchEmployeeR1);
 
 
-        // if (containsEmployee)
-        if (containsEmployeeR)
 
+
+
+        if (containsEmployee)
             Console.WriteLine($"Employee found in the list");
         else
             Console.WriteLine($"Employee not found in the list");
 
         Console.ReadLine();
 
+    }
+}
+
+public class EmployeeComparer : IEqualityComparer<Employee>
+{
+    public bool Equals([AllowNull]Employee x, [AllowNull]Employee y)
+    {
+        if(x.Id == y.Id && x.FirstName.ToLower()==y.FirstName.ToLower() && x.LastName.ToLower() == y.LastName.ToLower()){
+            return true;
+        };
+        return false;
+    }
+
+    public int GetHashCode([DisallowNull] Employee obj)
+    {
+        return obj.Id.GetHashCode();
     }
 }
 
