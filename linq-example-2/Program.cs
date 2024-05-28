@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -122,25 +123,48 @@ class Program
         // employeesListR.Add(searchEmployeeR);
         // bool containsEmployeeR = employeesListR.Contains(searchEmployeeR1);
 
+        // if (containsEmployee)
+        //     Console.WriteLine($"Employee found in the list");
+        // else
+        //     Console.WriteLine($"Employee not found in the list");
 
 
+        //OfType filter Operator
+        ArrayList mixedCollection = Data.GetHeterogeneousDataCollection();
 
+        var stringResult = from s in mixedCollection.OfType<string>()
+                           select s;
+        foreach (var item in stringResult)
+            Console.WriteLine(item);
 
-        if (containsEmployee)
-            Console.WriteLine($"Employee found in the list");
-        else
-            Console.WriteLine($"Employee not found in the list");
+        var intResult = from i in mixedCollection.OfType<int>()
+                        select i;
+        foreach (var item in intResult)
+            Console.WriteLine(item);
+
+        var employeeResults = from e in mixedCollection.OfType<Employee>()
+                              select e;
+        foreach (var item in employeeResults)
+            Console.WriteLine(item);
+
+        var departmentResults = from d in mixedCollection.OfType<Department>()
+                                select d;
+        foreach (var dept in departmentResults)
+            Console.WriteLine($"{dept.Id,-5} {dept.LongName,-30} {dept.ShortName,-10}");
+
 
         Console.ReadLine();
 
     }
 }
 
+
 public class EmployeeComparer : IEqualityComparer<Employee>
 {
-    public bool Equals([AllowNull]Employee x, [AllowNull]Employee y)
+    public bool Equals([AllowNull] Employee x, [AllowNull] Employee y)
     {
-        if(x.Id == y.Id && x.FirstName.ToLower()==y.FirstName.ToLower() && x.LastName.ToLower() == y.LastName.ToLower()){
+        if (x.Id == y.Id && x.FirstName.ToLower() == y.FirstName.ToLower() && x.LastName.ToLower() == y.LastName.ToLower())
+        {
             return true;
         };
         return false;
@@ -181,6 +205,24 @@ public class Department
 
 public static class Data
 {
+    public static ArrayList GetHeterogeneousDataCollection()
+    {
+        ArrayList arrayList = new ArrayList();
+
+        arrayList.Add(100);
+        arrayList.Add("Bob Jones");
+        arrayList.Add(2000);
+        arrayList.Add(3000);
+        arrayList.Add("Bill Henderson");
+        arrayList.Add(new Employee { Id = 6, FirstName = "Jennifer", LastName = "Dale", AnnualSalary = 90000, IsManager = true, DepartmentId = 1 });
+        arrayList.Add(new Employee { Id = 7, FirstName = "Dane", LastName = "Hughes", AnnualSalary = 60000, IsManager = false, DepartmentId = 2 });
+        arrayList.Add(new Department { Id = 4, ShortName = "MKT", LongName = "Marketing" });
+        arrayList.Add(new Department { Id = 5, ShortName = "R&D", LongName = "Research and Development" });
+        arrayList.Add(new Department { Id = 6, ShortName = "PRD", LongName = "Production" });
+
+        return arrayList;
+    }
+
     public static List<Employee> GetEmployees()
     {
         List<Employee> employees = new List<Employee>();
