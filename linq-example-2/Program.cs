@@ -130,28 +130,31 @@ class Program
 
 
         //OfType filter Operator
-        ArrayList mixedCollection = Data.GetHeterogeneousDataCollection();
+        // ArrayList mixedCollection = Data.GetHeterogeneousDataCollection();
 
-        var stringResult = from s in mixedCollection.OfType<string>()
-                           select s;
-        foreach (var item in stringResult)
-            Console.WriteLine(item);
+        // var stringResult = from s in mixedCollection.OfType<string>()
+        //                    select s;
+        // foreach (var item in stringResult)
+        //     Console.WriteLine(item);
 
-        var intResult = from i in mixedCollection.OfType<int>()
-                        select i;
-        foreach (var item in intResult)
-            Console.WriteLine(item);
+        // var intResult = from i in mixedCollection.OfType<int>()
+        //                 select i;
+        // foreach (var item in intResult)
+        //     Console.WriteLine(item);
 
-        var employeeResults = from e in mixedCollection.OfType<Employee>()
-                              select e;
-        foreach (var item in employeeResults)
-            Console.WriteLine(item);
+        // var employeeResults = from e in mixedCollection.OfType<Employee>()
+        //                       select e;
+        // foreach (var item in employeeResults)
+        //     Console.WriteLine(item);
 
-        var departmentResults = from d in mixedCollection.OfType<Department>()
-                                select d;
-        foreach (var dept in departmentResults)
-            Console.WriteLine($"{dept.Id,-5} {dept.LongName,-30} {dept.ShortName,-10}");
+        // var departmentResults = from d in mixedCollection.OfType<Department>()
+        //                         select d;
+        // foreach (var dept in departmentResults)
+        //     Console.WriteLine($"{dept.Id,-5} {dept.LongName,-30} {dept.ShortName,-10}");
 
+        var emp = employeesList.ElementAt(1);
+
+        Console.WriteLine($"{emp.Id} {emp.FirstName} {emp.LastName} {emp.AnnualSalary} {emp.IsManager} {emp.DepartmentId}");
 
         Console.ReadLine();
 
