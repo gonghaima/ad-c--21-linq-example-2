@@ -152,9 +152,16 @@ class Program
         // foreach (var dept in departmentResults)
         //     Console.WriteLine($"{dept.Id,-5} {dept.LongName,-30} {dept.ShortName,-10}");
 
-        var emp = employeesList.ElementAt(1);
+        // ElementAt Operator - throw exception if index is out of range
+        // var emp = employeesList.ElementAt(1);
 
-        Console.WriteLine($"{emp.Id} {emp.FirstName} {emp.LastName} {emp.AnnualSalary} {emp.IsManager} {emp.DepartmentId}");
+        // ElementAt Operator - return default value (null) if index is out of range
+        var emp = employeesList.ElementAtOrDefault(2);
+        if (emp != null)
+        {
+            Console.WriteLine($"{emp.Id} {emp.FirstName} {emp.LastName} {emp.AnnualSalary} {emp.IsManager} {emp.DepartmentId}");
+        }
+
 
         Console.ReadLine();
 
