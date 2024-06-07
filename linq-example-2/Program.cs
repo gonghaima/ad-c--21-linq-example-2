@@ -155,12 +155,23 @@ class Program
         // ElementAt Operator - throw exception if index is out of range
         // var emp = employeesList.ElementAt(1);
 
-        // ElementAt Operator - return default value (null) if index is out of range
-        var emp = employeesList.ElementAtOrDefault(2);
-        if (emp != null)
-        {
-            Console.WriteLine($"{emp.Id} {emp.FirstName} {emp.LastName} {emp.AnnualSalary} {emp.IsManager} {emp.DepartmentId}");
-        }
+        // // ElementAt Operator - return default value (null) if index is out of range
+        // var emp = employeesList.ElementAtOrDefault(2);
+        // if (emp != null)
+        // {
+        //     Console.WriteLine($"{emp.Id} {emp.FirstName} {emp.LastName} {emp.AnnualSalary} {emp.IsManager} {emp.DepartmentId}");
+        // }
+
+        //First, FirstOrDefault, Last, LastOrDefault Operators
+        List<int> integerList = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // first number in the list
+        // int result = integerList.First();
+
+        // first even number in the list
+        int result = integerList.First(i => i%2 == 0);
+
+        Console.WriteLine(result);
 
 
         Console.ReadLine();
