@@ -163,15 +163,26 @@ class Program
         // }
 
         //First, FirstOrDefault, Last, LastOrDefault Operators
-        List<int> integerList = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        // List<int> integerList = new List<int> { 1, 21, 3, 41, 5, 61, 7, 81, 9, 101 };
 
         // first number in the list
         // int result = integerList.First();
 
-        // first even number in the list
-        int result = integerList.First(i => i%2 == 0);
+        // first even number in the list - throw exception if no even number found
+        // int result = integerList.First(i => i%2 == 0);
+        
+        // first even number in the list - return default value (0) if no even number found
+        // int result = integerList.FirstOrDefault(i => i%2 == 0);
 
-        Console.WriteLine(result);
+        // int result = integerList.Last();
+        // int result = integerList.LastOrDefault();
+
+        // Console.WriteLine(result);
+
+        //// Single Operators - throw exception if more than one element found
+        var emp = employeesList.Single(e => e.Id == 1);
+
+        //// SingleOrDefault Operators - return default value (null) if more than one element found
 
 
         Console.ReadLine();
