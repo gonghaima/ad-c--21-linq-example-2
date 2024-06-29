@@ -14,11 +14,19 @@ class Program
 
         //// Equality Operator
         //// SequenceEqual
-        var interList1 = new List<int> { 1, 2, 3, 4, 5 };
-        var interList2 = new List<int> { 1, 2, 3, 4, 5 };
+        // var interList1 = new List<int> { 1, 2, 3, 4, 5 };
+        // var interList2 = new List<int> { 1, 2, 3, 4, 5 };
+        // var boolSequnceEqual = interList1.SequenceEqual(interList2);
+        // Console.WriteLine($"SequenceEqual: {boolSequnceEqual}");
 
-        var boolSequnceEqual = interList1.SequenceEqual(interList2);
-        Console.WriteLine($"SequenceEqual: {boolSequnceEqual}");
+
+
+        // SequenceEqual does not work with complex types, unless use IEqualityComparer
+        var employeesListCompare = Data.GetEmployees();
+        // bool boolSE = employeesList.SequenceEqual(employeesListCompare);
+        bool boolSE = employeesList.SequenceEqual(employeesListCompare, new EmployeeComparer());
+        Console.WriteLine($"boolSE: {boolSE}");
+
 
         Console.ReadLine();
 
