@@ -21,11 +21,23 @@ class Program
 
 
 
-        // SequenceEqual does not work with complex types, unless use IEqualityComparer
-        var employeesListCompare = Data.GetEmployees();
-        // bool boolSE = employeesList.SequenceEqual(employeesListCompare);
-        bool boolSE = employeesList.SequenceEqual(employeesListCompare, new EmployeeComparer());
-        Console.WriteLine($"boolSE: {boolSE}");
+        // // SequenceEqual does not work with complex types, unless use IEqualityComparer
+        // var employeesListCompare = Data.GetEmployees();
+        // // bool boolSE = employeesList.SequenceEqual(employeesListCompare);
+        // bool boolSE = employeesList.SequenceEqual(employeesListCompare, new EmployeeComparer());
+        // Console.WriteLine($"boolSE: {boolSE}");
+
+        // // Concatenation Operator
+
+        List<int> integerList1 = new List<int> { 1, 2, 3, 4, };
+        List<int> integerList2 = new List<int> { 5, 6, 7, 8, 9, 10 };
+
+        IEnumerable<int> integerListConcat = integerList1.Concat(integerList2);
+
+        foreach (var item in integerListConcat)
+        {
+            Console.WriteLine(item);
+        }
 
 
         Console.ReadLine();
