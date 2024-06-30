@@ -29,14 +29,26 @@ class Program
 
         // // Concatenation Operator
 
-        List<int> integerList1 = new List<int> { 1, 2, 3, 4, };
-        List<int> integerList2 = new List<int> { 5, 6, 7, 8, 9, 10 };
+        // List<int> integerList1 = new List<int> { 1, 2, 3, 4, };
+        // List<int> integerList2 = new List<int> { 5, 6, 7, 8, 9, 10 };
 
-        IEnumerable<int> integerListConcat = integerList1.Concat(integerList2);
+        // IEnumerable<int> integerListConcat = integerList1.Concat(integerList2);
 
-        foreach (var item in integerListConcat)
+        // foreach (var item in integerListConcat)
+        // {
+        //     Console.WriteLine(item);
+        // }
+
+        List<Employee> employeesList2 = new List<Employee> {
+            new Employee { Id = 1, FirstName = "Bob", LastName = "Jones", AnnualSalary = 60000.3m, IsManager = true, DepartmentId = 1 },
+            new Employee { Id = 2, FirstName = "Sarah", LastName = "Jameson", AnnualSalary = 80000.1m, IsManager = true, DepartmentId = 3 },
+            new Employee { Id = 3, FirstName = "Douglas", LastName = "Roberts", AnnualSalary = 40000.2m, IsManager = false, DepartmentId = 1 },
+            new Employee { Id = 4, FirstName = "Jane", LastName = "Stevens", AnnualSalary = 30000.2m, IsManager = false, DepartmentId = 3 }
+        };
+        IEnumerable<Employee> employeesListConcat = employeesList.Concat(employeesList2);
+        foreach (var item in employeesListConcat)
         {
-            Console.WriteLine(item);
+            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
         }
 
 
