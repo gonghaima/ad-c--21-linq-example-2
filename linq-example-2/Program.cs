@@ -39,18 +39,27 @@ class Program
         //     Console.WriteLine(item);
         // }
 
-        List<Employee> employeesList2 = new List<Employee> {
-            new Employee { Id = 1, FirstName = "Bob", LastName = "Jones", AnnualSalary = 60000.3m, IsManager = true, DepartmentId = 1 },
-            new Employee { Id = 2, FirstName = "Sarah", LastName = "Jameson", AnnualSalary = 80000.1m, IsManager = true, DepartmentId = 3 },
-            new Employee { Id = 3, FirstName = "Douglas", LastName = "Roberts", AnnualSalary = 40000.2m, IsManager = false, DepartmentId = 1 },
-            new Employee { Id = 4, FirstName = "Jane", LastName = "Stevens", AnnualSalary = 30000.2m, IsManager = false, DepartmentId = 3 }
-        };
-        IEnumerable<Employee> employeesListConcat = employeesList.Concat(employeesList2);
-        foreach (var item in employeesListConcat)
-        {
-            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
-        }
+        // List<Employee> employeesList2 = new List<Employee> {
+        //     new Employee { Id = 1, FirstName = "Bob", LastName = "Jones", AnnualSalary = 60000.3m, IsManager = true, DepartmentId = 1 },
+        //     new Employee { Id = 2, FirstName = "Sarah", LastName = "Jameson", AnnualSalary = 80000.1m, IsManager = true, DepartmentId = 3 },
+        //     new Employee { Id = 3, FirstName = "Douglas", LastName = "Roberts", AnnualSalary = 40000.2m, IsManager = false, DepartmentId = 1 },
+        //     new Employee { Id = 4, FirstName = "Jane", LastName = "Stevens", AnnualSalary = 30000.2m, IsManager = false, DepartmentId = 3 }
+        // };
+        // IEnumerable<Employee> employeesListConcat = employeesList.Concat(employeesList2);
+        // foreach (var item in employeesListConcat)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
 
+        // Aggregation Operator
+        decimal totalAnnualSalary = employeesList.Aggregate<Employee, decimal>(0, (total, employee) => 
+        {
+            var bonus = employee.IsManager ? 0.04m : 0.02m;
+            total += employee.AnnualSalary + (employee.AnnualSalary * bonus);
+            return total; 
+        });
+
+        Console.WriteLine($"Total Annual Salary (including bonus): {totalAnnualSalary}");
 
         Console.ReadLine();
 
