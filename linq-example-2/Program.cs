@@ -52,14 +52,22 @@ class Program
         // }
 
         // Aggregation Operator
-        decimal totalAnnualSalary = employeesList.Aggregate<Employee, decimal>(0, (total, employee) => 
+        // decimal totalAnnualSalary = employeesList.Aggregate<Employee, decimal>(0, (total, employee) => 
+        // {
+        //     var bonus = employee.IsManager ? 0.04m : 0.02m;
+        //     total += employee.AnnualSalary + (employee.AnnualSalary * bonus);
+        //     return total; 
+        // });
+
+        // Console.WriteLine($"Total Annual Salary (including bonus): {totalAnnualSalary}");
+        string data = employeesList.Aggregate<Employee, string, string>("Employee Annual Salaries (including bonus)", (total, employee) =>
         {
             var bonus = employee.IsManager ? 0.04m : 0.02m;
-            total += employee.AnnualSalary + (employee.AnnualSalary * bonus);
-            return total; 
-        });
+            total += $"{employee.Id} {employee.FirstName} {employee.LastName} - {employee.AnnualSalary + (employee.AnnualSalary * bonus)}\n";
+            return total;
+        }, s=>s.Substring(0, s.Length-2));
 
-        Console.WriteLine($"Total Annual Salary (including bonus): {totalAnnualSalary}");
+        Console.WriteLine(data);
 
         Console.ReadLine();
 
