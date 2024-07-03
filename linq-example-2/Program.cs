@@ -60,14 +60,18 @@ class Program
         // });
 
         // Console.WriteLine($"Total Annual Salary (including bonus): {totalAnnualSalary}");
-        string data = employeesList.Aggregate<Employee, string, string>("Employee Annual Salaries (including bonus)", (total, employee) =>
-        {
-            var bonus = employee.IsManager ? 0.04m : 0.02m;
-            total += $"{employee.Id} {employee.FirstName} {employee.LastName} - {employee.AnnualSalary + (employee.AnnualSalary * bonus)}\n";
-            return total;
-        }, s=>s.Substring(0, s.Length-2));
+        // string data = employeesList.Aggregate<Employee, string, string>("Employee Annual Salaries (including bonus)", (total, employee) =>
+        // {
+        //     var bonus = employee.IsManager ? 0.04m : 0.02m;
+        //     total += $"{employee.Id} {employee.FirstName} {employee.LastName} - {employee.AnnualSalary + (employee.AnnualSalary * bonus)}\n";
+        //     return total;
+        // }, s=>s.Substring(0, s.Length-2));
 
-        Console.WriteLine(data);
+        // Console.WriteLine(data);
+
+        // Average Operator
+        decimal averageAnnualSalary = employeesList.Average(employee => employee.AnnualSalary);
+        Console.WriteLine($"Average Annual Salary: {averageAnnualSalary}");
 
         Console.ReadLine();
 
