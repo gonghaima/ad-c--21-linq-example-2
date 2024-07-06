@@ -75,8 +75,12 @@ class Program
 
         // count operator
         // int count = employeesList.Count();
-        int count = employeesList.Count(e => e.DepartmentId == 3);
-        Console.WriteLine($"Count: {count}");
+        // int count = employeesList.Count(e => e.DepartmentId == 3);
+        // Console.WriteLine($"Count: {count}");
+
+        // sum operator
+        decimal sum = employeesList.Sum(e => e.AnnualSalary);
+        Console.WriteLine($"Sum: {sum}");
 
 
         Console.ReadLine();
