@@ -72,9 +72,10 @@ class Program
         // Average Operator
         // decimal averageAnnualSalary = employeesList.Where(d => d.DepartmentId == 3).Average(employee => employee.AnnualSalary);
         // Console.WriteLine($"Average Annual Salary: {averageAnnualSalary}");
-        
+
         // count operator
-        int count = employeesList.Count();
+        // int count = employeesList.Count();
+        int count = employeesList.Count(e => e.DepartmentId == 3);
         Console.WriteLine($"Count: {count}");
 
 
