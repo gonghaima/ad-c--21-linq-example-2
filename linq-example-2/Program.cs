@@ -79,8 +79,12 @@ class Program
         // Console.WriteLine($"Count: {count}");
 
         // sum operator
-        decimal sum = employeesList.Sum(e => e.AnnualSalary);
-        Console.WriteLine($"Sum: {sum}");
+        // decimal sum = employeesList.Sum(e => e.AnnualSalary);
+        // Console.WriteLine($"Sum: {sum}");
+
+        // max operator
+        decimal max = employeesList.Max(e => e.AnnualSalary);
+        Console.WriteLine($"Max: {max}");
 
 
         Console.ReadLine();
