@@ -83,8 +83,15 @@ class Program
         // Console.WriteLine($"Sum: {sum}");
 
         // max operator
-        decimal max = employeesList.Max(e => e.AnnualSalary);
-        Console.WriteLine($"Max: {max}");
+        // decimal max = employeesList.Max(e => e.AnnualSalary);
+        // Console.WriteLine($"Max: {max}");
+
+        // Generation Operator - DefaultIfEmpty, Empty, Range, Repeat
+        // DefaultIfEmpty
+        List<int> intList = new List<int>();
+        var newList = intList.DefaultIfEmpty(0);
+
+        Console.WriteLine(newList.ElementAt(0));
 
 
         Console.ReadLine();
