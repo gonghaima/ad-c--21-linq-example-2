@@ -90,11 +90,20 @@ class Program
         // DefaultIfEmpty
         // List<int> intList = new List<int>();
         // var newList = intList.DefaultIfEmpty(0);
-        List<Employee> employees = new List<Employee>();
-        var newList = employees.DefaultIfEmpty(new Employee { Id = 0, FirstName = "No Employee", LastName = "No Employee", AnnualSalary = 0, IsManager = false, DepartmentId = 0 });
-        var result = newList.ElementAt(0);
+        // List<Employee> employees = new List<Employee>();
+        // var newList = employees.DefaultIfEmpty(new Employee { Id = 0, FirstName = "No Employee", LastName = "No Employee", AnnualSalary = 0, IsManager = false, DepartmentId = 0 });
+        // var result = newList.ElementAt(0);
 
-        Console.WriteLine($"{result.Id} {result.FirstName} {result.LastName}");
+        // Console.WriteLine($"{result.Id} {result.FirstName} {result.LastName}");
+
+        // Empty
+        List<Employee> emptyEmployees = Enumerable.Empty<Employee>().ToList();
+        emptyEmployees.Add(new Employee { Id = 1, FirstName = "Bob", LastName = "Jones", AnnualSalary = 60000.3m, IsManager = true, DepartmentId = 1 });
+
+        foreach (var item in emptyEmployees)
+        {
+            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        }
 
 
         Console.ReadLine();
