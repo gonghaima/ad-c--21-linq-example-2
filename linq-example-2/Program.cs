@@ -106,8 +106,15 @@ class Program
         // }
 
         // Range
-        var range = Enumerable.Range(25, 20);
-        foreach (var item in range)
+        // var range = Enumerable.Range(25, 20);
+        // foreach (var item in range)
+        // {
+        //     Console.WriteLine(item);
+        // }
+
+        // Repeat Operator
+        var strCollection = Enumerable.Repeat<string>("Hello World", 5);
+        foreach (var item in strCollection)
         {
             Console.WriteLine(item);
         }
