@@ -97,12 +97,19 @@ class Program
         // Console.WriteLine($"{result.Id} {result.FirstName} {result.LastName}");
 
         // Empty
-        List<Employee> emptyEmployees = Enumerable.Empty<Employee>().ToList();
-        emptyEmployees.Add(new Employee { Id = 1, FirstName = "Bob", LastName = "Jones", AnnualSalary = 60000.3m, IsManager = true, DepartmentId = 1 });
+        // List<Employee> emptyEmployees = Enumerable.Empty<Employee>().ToList();
+        // emptyEmployees.Add(new Employee { Id = 1, FirstName = "Bob", LastName = "Jones", AnnualSalary = 60000.3m, IsManager = true, DepartmentId = 1 });
 
-        foreach (var item in emptyEmployees)
+        // foreach (var item in emptyEmployees)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
+
+        // Range
+        var range = Enumerable.Range(25, 20);
+        foreach (var item in range)
         {
-            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+            Console.WriteLine(item);
         }
 
 
