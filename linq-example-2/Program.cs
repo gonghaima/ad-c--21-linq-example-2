@@ -113,8 +113,16 @@ class Program
         // }
 
         // Repeat Operator
-        var strCollection = Enumerable.Repeat<string>("Hello World", 5);
-        foreach (var item in strCollection)
+        // var strCollection = Enumerable.Repeat<string>("Hello World", 5);
+        // foreach (var item in strCollection)
+        // {
+        //     Console.WriteLine(item);
+        // }
+
+        // Set Operator - Distinct, Except, Intersect, Union
+        // Distinct
+        var distinctDepartments = employeesList.Select(e => e.DepartmentId).Distinct();
+        foreach (var item in distinctDepartments)
         {
             Console.WriteLine(item);
         }
