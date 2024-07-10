@@ -121,8 +121,17 @@ class Program
 
         // Set Operator - Distinct, Except, Intersect, Union
         // Distinct
-        var distinctDepartments = employeesList.Select(e => e.DepartmentId).Distinct();
-        foreach (var item in distinctDepartments)
+        // var distinctDepartments = employeesList.Select(e => e.DepartmentId).Distinct();
+        // foreach (var item in distinctDepartments)
+        // {
+        //     Console.WriteLine(item);
+        // }
+
+        // Except
+        IEnumerable<int> collection1 = new List<int> { 1, 2, 3, 4, 5 };
+        IEnumerable<int> collection2 = new List<int> { 3, 4, 5, 6, 7 };
+        var exceptCollection = collection1.Except(collection2);
+        foreach (var item in exceptCollection)
         {
             Console.WriteLine(item);
         }
