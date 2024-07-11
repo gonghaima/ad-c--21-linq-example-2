@@ -128,12 +128,23 @@ class Program
         // }
 
         // Except
-        IEnumerable<int> collection1 = new List<int> { 1, 2, 3, 4, 5 };
-        IEnumerable<int> collection2 = new List<int> { 3, 4, 5, 6, 7 };
-        var exceptCollection = collection1.Except(collection2);
-        foreach (var item in exceptCollection)
+        // IEnumerable<int> collection1 = new List<int> { 1, 2, 3, 4, 5 };
+        // IEnumerable<int> collection2 = new List<int> { 3, 4, 5, 6, 7 };
+        // var exceptCollection = collection1.Except(collection2);
+        // foreach (var item in exceptCollection)
+        // {
+        //     Console.WriteLine(item);
+        // }
+        var employeesList2 = new List<Employee> {
+            new Employee { Id = 1, FirstName = "Bob", LastName = "Jones", AnnualSalary = 60000.3m, IsManager = true, DepartmentId = 1 },
+            new Employee { Id = 2, FirstName = "Sarah", LastName = "Jameson", AnnualSalary = 80000.1m, IsManager = true, DepartmentId = 3 },
+            new Employee { Id = 3, FirstName = "Douglas", LastName = "Roberts", AnnualSalary = 40000.2m, IsManager = false, DepartmentId = 1 },
+            new Employee { Id = 9, FirstName = "Jane", LastName = "Stevens", AnnualSalary = 30000.2m, IsManager = false, DepartmentId = 3 }
+        };
+        var result = employeesList.Except(employeesList2, new EmployeeComparer());
+        foreach (var item in result)
         {
-            Console.WriteLine(item);
+            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
         }
 
 
