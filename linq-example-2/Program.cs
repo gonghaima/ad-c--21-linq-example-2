@@ -175,7 +175,14 @@ class Program
 
         // Partitioning Operator - Skip, SkipWhile, Take, TakeWhile
         // Skip
-        var result = employeesList.Skip(2);
+        // var result = employeesList.Skip(2);
+        // foreach (var item in result)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
+
+        // SkipWhile
+        var result = employeesList.SkipWhile(e => e.DepartmentId == 1);
         foreach (var item in result)
         {
             Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
