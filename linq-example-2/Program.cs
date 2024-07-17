@@ -182,7 +182,14 @@ class Program
         // }
 
         // SkipWhile
-        var result = employeesList.SkipWhile(e => e.DepartmentId == 1);
+        // var result = employeesList.SkipWhile(e => e.DepartmentId == 1);
+        // foreach (var item in result)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
+
+        // Take
+        var result = employeesList.Take(2);
         foreach (var item in result)
         {
             Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
