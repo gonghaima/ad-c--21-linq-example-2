@@ -204,14 +204,26 @@ class Program
 
         // Ordering Operator - ToList, ToDictionary, ToArray
         // ToList
-        List<Employee> results = (from emp in employeesList
-                                  where emp.AnnualSalary > 50000
-                                  select emp).ToList();
+        // List<Employee> results = (from emp in employeesList
+        //                           where emp.AnnualSalary > 50000
+        //                           select emp).ToList();
+
+        // foreach (var item in results)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
+
+        // ToDictionary
+        Dictionary<int, Employee> results = (from emp in employeesList
+                                             where emp.AnnualSalary > 50000
+                                             select emp).ToDictionary(e => e.Id);
+
 
         foreach (var item in results)
         {
-            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+            Console.WriteLine($"{item.Key} {item.Value.FirstName} {item.Value.LastName}");
         }
+
 
         Console.ReadLine();
 
