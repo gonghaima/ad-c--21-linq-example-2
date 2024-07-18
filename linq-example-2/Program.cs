@@ -196,8 +196,19 @@ class Program
         // }
 
         // TakeWhile
-        var result = employeesList.TakeWhile(e => e.DepartmentId == 1);
-        foreach (var item in result)
+        // var result = employeesList.TakeWhile(e => e.DepartmentId == 1);
+        // foreach (var item in result)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
+
+        // Ordering Operator - ToList, ToDictionary, ToArray
+        // ToList
+        List<Employee> results = (from emp in employeesList
+                                  where emp.AnnualSalary > 50000
+                                  select emp).ToList();
+
+        foreach (var item in results)
         {
             Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
         }
