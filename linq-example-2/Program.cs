@@ -219,13 +219,22 @@ class Program
         //                                      select emp).ToDictionary(e => e.Id);
 
         // ToArray
-        Employee[] results = (from emp in employeesList
-                              where emp.AnnualSalary > 50000
-                              select emp).ToArray();
+        // Employee[] results = (from emp in employeesList
+        //                       where emp.AnnualSalary > 50000
+        //                       select emp).ToArray();
 
-        foreach (var item in results)
+        // foreach (var item in results)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
+
+        // Let Operator and Into Operator
+        var result = from emp in employeesList
+                     let bonus = emp.IsManager ? 0.04m : 0.02m
+                     select new { emp.Id, emp.FirstName, emp.LastName, emp.AnnualSalary, Bonus = emp.AnnualSalary * bonus };
+        foreach (var item in result)
         {
-            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.Bonus}");
         }
 
         Console.ReadLine();
