@@ -189,13 +189,18 @@ class Program
         // }
 
         // Take
-        var result = employeesList.Take(2);
+        // var result = employeesList.Take(2);
+        // foreach (var item in result)
+        // { 
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
+        // }
+
+        // TakeWhile
+        var result = employeesList.TakeWhile(e => e.DepartmentId == 1);
         foreach (var item in result)
         {
             Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
         }
-
-
 
         Console.ReadLine();
 
