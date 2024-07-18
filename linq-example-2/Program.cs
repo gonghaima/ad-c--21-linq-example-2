@@ -214,16 +214,19 @@ class Program
         // }
 
         // ToDictionary
-        Dictionary<int, Employee> results = (from emp in employeesList
-                                             where emp.AnnualSalary > 50000
-                                             select emp).ToDictionary(e => e.Id);
+        // Dictionary<int, Employee> results = (from emp in employeesList
+        //                                      where emp.AnnualSalary > 50000
+        //                                      select emp).ToDictionary(e => e.Id);
 
+        // ToArray
+        Employee[] results = (from emp in employeesList
+                              where emp.AnnualSalary > 50000
+                              select emp).ToArray();
 
         foreach (var item in results)
         {
-            Console.WriteLine($"{item.Key} {item.Value.FirstName} {item.Value.LastName}");
+            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName}");
         }
-
 
         Console.ReadLine();
 
