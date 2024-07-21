@@ -229,13 +229,26 @@ class Program
         // }
 
         // Let Operator and Into Operator
+        // var result = from emp in employeesList
+        //              let bonus = emp.IsManager ? 0.04m : 0.02m
+        //              select new { emp.Id, emp.FirstName, emp.LastName, emp.AnnualSalary, Bonus = emp.AnnualSalary * bonus };
+        // foreach (var item in result)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.Bonus}");
+        // }
+
+        // Into Operator
         var result = from emp in employeesList
                      let bonus = emp.IsManager ? 0.04m : 0.02m
-                     select new { emp.Id, emp.FirstName, emp.LastName, emp.AnnualSalary, Bonus = emp.AnnualSalary * bonus };
+                     select new { emp.Id, emp.FirstName, emp.LastName, emp.AnnualSalary, Bonus = emp.AnnualSalary * bonus }
+                     into empBonus
+                     where empBonus.Bonus > 1000
+                     select empBonus;
         foreach (var item in result)
         {
             Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.Bonus}");
         }
+
 
         Console.ReadLine();
 
