@@ -10,7 +10,7 @@ class Program
     static void Main(string[] args)
     {
         List<Employee> employeesList = Data.GetEmployees();
-        List<Department> departmentsList = Data.GetDepartments();
+        List<Department> departmentsList = Data.GetDepartments(employeesList);
 
         //// Equality Operator
         //// SequenceEqual
@@ -238,16 +238,28 @@ class Program
         // }
 
         // Into Operator
-        var result = from emp in employeesList
-                     let bonus = emp.IsManager ? 0.04m : 0.02m
-                     select new { emp.Id, emp.FirstName, emp.LastName, emp.AnnualSalary, Bonus = emp.AnnualSalary * bonus }
-                     into empBonus
-                     where empBonus.Bonus > 1000
-                     select empBonus;
-        foreach (var item in result)
+        // var result = from emp in employeesList
+        //              let bonus = emp.IsManager ? 0.04m : 0.02m
+        //              select new { emp.Id, emp.FirstName, emp.LastName, emp.AnnualSalary, Bonus = emp.AnnualSalary * bonus }
+        //              into empBonus
+        //              where empBonus.Bonus > 1000
+        //              select empBonus;
+        // foreach (var item in result)
+        // {
+        //     Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.Bonus}");
+        // }
+
+        // Projection Operator - Select, SelectMany
+        // Select
+        var results = departmentsList.Select(d => d.Employees);
+        foreach (var items in results)
         {
-            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.Bonus}");
+            foreach (var item in items)
+            {
+                Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.IsManager}");
+            }
         }
+
 
 
         Console.ReadLine();
@@ -298,6 +310,7 @@ public class Department
     public int Id { get; set; }
     public string ShortName { get; set; }
     public string LongName { get; set; }
+    public IEnumerable<Employee> Employees { get; set; }
 }
 
 public static class Data
@@ -368,7 +381,7 @@ public static class Data
         return employees;
     }
 
-    public static List<Department> GetDepartments()
+    public static List<Department> GetDepartments(IEnumerable<Employee> employees)
     {
         List<Department> departments = new List<Department>();
 
@@ -376,21 +389,30 @@ public static class Data
         {
             Id = 1,
             ShortName = "HR",
-            LongName = "Human Resources"
+            LongName = "Human Resources",
+            Employees = from emp in employees
+                        where emp.DepartmentId == 1
+                        select emp
         };
         departments.Add(department);
         department = new Department
         {
             Id = 2,
             ShortName = "FN",
-            LongName = "Finance"
+            LongName = "Finance",
+            Employees = from emp in employees
+                        where emp.DepartmentId == 2
+                        select emp
         };
         departments.Add(department);
         department = new Department
         {
             Id = 3,
             ShortName = "TE",
-            LongName = "Technology"
+            LongName = "Technology",
+            Employees = from emp in employees
+                        where emp.DepartmentId == 3
+                        select emp
         };
         departments.Add(department);
 
