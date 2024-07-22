@@ -251,16 +251,21 @@ class Program
 
         // Projection Operator - Select, SelectMany
         // Select
-        var results = departmentsList.Select(d => d.Employees);
-        foreach (var items in results)
+        // var results = departmentsList.Select(d => d.Employees);
+        // foreach (var items in results)
+        // {
+        //     foreach (var item in items)
+        //     {
+        //         Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.IsManager}");
+        //     }
+        // }
+
+        // SelectMany
+        var results = departmentsList.SelectMany(d => d.Employees);
+        foreach (var item in results)
         {
-            foreach (var item in items)
-            {
-                Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.IsManager}");
-            }
+            Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.AnnualSalary} {item.IsManager}");
         }
-
-
 
         Console.ReadLine();
 
